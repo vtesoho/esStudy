@@ -35,7 +35,9 @@ func Init() error {
 	var err error
 	cfg := elasticsearch.Config{
 		Addresses: []string{
-			"http://10.192.10.11:9200", // 你的 Elasticsearch 地址
+			"http://172.28.251.218:9200",
+			"http://172.28.251.219:9200",
+			"http://172.28.251.220:9200",
 		},
 		Username: "elastic",
 		Password: "Iceb4NUov86fCPeDNtPF",

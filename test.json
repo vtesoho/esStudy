@@ -1,0 +1,100 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 1,
+    "index": {
+      "refresh_interval": "1m"
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id":{
+        "type": "integer"
+      },
+      "customeraccount": {
+        "type": "keyword"
+      },
+      "customername": {
+        "type": "keyword"
+      },
+      "callere164": {
+        "type": "keyword"
+      },
+      "callergatewayid": {
+        "type": "keyword"
+      },
+      "calleee164": {
+        "type": "keyword"
+      },
+      "calleegatewayid": {
+        "type": "keyword"
+      },
+      "callerip": {
+        "type": "keyword"
+      },
+      "calleeip": {
+        "type": "keyword"
+      },
+      "calleraccesse164": {
+        "type": "keyword"
+      },
+      "calleeaccesse164": {
+        "type": "keyword"
+      },
+      "callertogatewaye164": {
+        "type": "keyword"
+      },
+      "calleetogatewaye164": {
+        "type": "keyword"
+      },
+      "starttime": {
+        "type": "integer"
+      },
+      "stoptime": {
+        "type": "integer"
+      },
+      "holdtime": {
+        "type": "integer"
+      }
+    }
+  }
+}
+
+
+帐户号码 Customeraccount
+帐户名称 Customername
+主叫号码 Callere164
+主叫网关 Callergatewayid
+被叫号码 Calleee164
+被叫网关 Calleegatewayid
+主叫 IP Callerip
+被叫 IP Calleeip
+呼入主叫 Calleraccesse164
+呼入被叫 Calleeaccesse164
+呼出主叫 Callertogatewaye164
+呼出被叫 Calleetogatewaye164
+通话时长 Holdtime
+通话开始时间 Starttime
+通话结束时间 Stoptime
+
+
+
+  {
+    "settings": {
+      "number_of_shards": 3,
+      "number_of_replicas": 0,
+      "index": {
+        "refresh_interval": "1s"
+      }
+    },
+    "mappings": {
+      "properties": {
+        "id":{
+            "type": "integer"
+        },
+        "date":{
+            "type": "integer"
+        }
+      }
+    }
+  }

@@ -6,53 +6,76 @@ import (
 	"esStudy/src/esFunc"
 	"esStudy/src/gorms/aiVoice/clientManageLogsGorm"
 	"fmt"
+	"log"
 	"strconv"
 )
 
 func main() {
-	// defaultES.Init()
+	// CreateIndexText()
+	IndexExistsTest()
 
-	// viVoiceCheckLogsMysql.InitMysql()
+}
 
-	// settings := map[string]interface{}{
-	// 	"settings": map[string]interface{}{
-	// 		"analysis": map[string]interface{}{
-	// 			"tokenizer": map[string]interface{}{
-	// 				"ik_smart": map[string]interface{}{
-	// 					"type": "ik_smart",
-	// 				},
-	// 			},
-	// 			"analyzer": map[string]interface{}{
-	// 				"ik_smart_analyzer": map[string]interface{}{
-	// 					"type":      "custom",
-	// 					"tokenizer": "ik_smart",
-	// 				},
-	// 			},
-	// 		},
-	// 	},
-	// 	"mappings": map[string]interface{}{
-	// 		"properties": map[string]interface{}{
-	// 			"Id": map[string]interface{}{
-	// 				"type": "integer",
-	// 			},
-	// 			"Content": map[string]interface{}{
-	// 				"type":     "text",
-	// 				"analyzer": "ik_smart_analyzer",
-	// 			},
-	// 		},
-	// 	},
-	// }
+func CreateIndexText() {
+	// JSON configuration for the index
+	settingsJSON := `{
+		"settings": {
+			"number_of_shards": 3,
+			"number_of_replicas": 0,
+			"index": {
+				"refresh_interval": "1m"
+			}
+		},
+		"mappings": {
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"agentname": {
+					"type": "keyword"
+				},
+				"agentaccount": {
+					"type": "keyword"
+				},
+				"callere164": {
+					"type": "keyword"
+				},
+				"calleraccesse164": {
+					"type": "keyword"
+				},
+				"calleee164": {
+					"type": "keyword"
+				},
+				"calleeaccesse164": {
+					"type": "keyword"
+				},
+				"callerip": {
+					"type": "keyword"
+				},
+				"callerrtpip": {
+					"type": "keyword"
+				},
+				"callergatewayid": {
+					"type": "keyword"
+				},
+				"starttime": {
+					"type": "long"
+				},
+				"stoptime": {
+					"type": "long"
+				},
+				"holdtime": {
+					"type": "integer"
+				}
+			}
+		}
+	}`
 
-	// err := esFuncCreateIndex.CreateIndex(indexName, settings)
-	// if err != nil {
-	// 	fmt.Printf("Error creating index: %s\n", err)
-	// }
-	// fmt.Println("esStudy start")
+	indexName := "20241210_73_11_12"
 
-	// esFuncDeleteIndex.DeleteIndex(indexName)
-
-	SearchTest()
-	// IndexExistsTest()
+	if err := esFunc.CreateIndex(indexName, settingsJSON); err != nil {
+		log.Fatalf("Failed to create index: %v", err)
+	}
 
 }
 
@@ -101,7 +124,8 @@ func SearchTest() {
 }
 
 func IndexExistsTest() {
-	indexName := "my_index"
+	indexName := "20241210_73_11_12"
+	// indexName := "my_index"
 	result, err := esFunc.IndexExists(indexName)
 	fmt.Println("result,err", result, err)
 }
